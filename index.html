@@ -2,302 +2,2554 @@
 <html lang="pl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Elysium Sport & Fitness | Kliniska Wielkie</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elysium Sport & Fitness</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap"
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
     />
-    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      :root {
+        --black: #080808;
+        --gray-dark: #111111;
+        --gray-mid: #1c1c1c;
+        --gray-border: #2a2a2a;
+        --white: #ffffff;
+        --off-white: #f0f0f0;
+        --muted: #888888;
+        --blue: #0277bd;
+        --blue-dim: rgba(2, 119, 189, 0.12);
+        --blue-glow: rgba(2, 119, 189, 0.25);
+        --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Barlow", sans-serif;
+        background: var(--black);
+        color: var(--white);
+        overflow-x: hidden;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        outline: none;
+      }
+      ul {
+        list-style: none;
+      }
+
+      /* ── TYPOGRAPHY ── */
+      .display {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+        line-height: 0.92;
+      }
+      .heading {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+      .label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 600;
+        font-size: 12px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--blue);
+      }
+      .section-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 900;
+        text-transform: uppercase;
+        font-size: clamp(42px, 7vw, 80px);
+        line-height: 0.95;
+        letter-spacing: -0.02em;
+      }
+
+      /* ── LAYOUT ── */
+      .container {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      section {
+        position: relative;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 0 24px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(8, 8, 8, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--gray-border);
+        transition: var(--transition);
+      }
+      .nav-logo {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 900;
+        font-size: 22px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .nav-logo span {
+        color: var(--blue);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+      .nav-links a {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 600;
+        font-size: 13px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        transition: color var(--transition);
+      }
+      .nav-links a:hover {
+        color: var(--white);
+      }
+      .nav-cta {
+        background: var(--blue);
+        color: var(--black) !important;
+        padding: 8px 20px;
+        border-radius: 2px;
+        font-weight: 700 !important;
+      }
+      .nav-cta:hover {
+        background: #0288d1 !important;
+        color: var(--black) !important;
+      }
+      .nav-hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        padding: 4px;
+      }
+      .nav-hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--white);
+        transition: var(--transition);
+      }
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--black);
+        z-index: 99;
+        padding: 40px 24px;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .mobile-menu.open {
+        display: flex;
+      }
+      .mobile-menu a {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 32px;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        color: var(--off-white);
+        padding: 12px 0;
+        border-bottom: 1px solid var(--gray-border);
+        transition: color var(--transition);
+      }
+      .mobile-menu a:hover {
+        color: var(--blue);
+      }
+
+      /* ── HERO ── */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding-bottom: 80px;
+        padding-top: 70px;
+        overflow: hidden;
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(8, 8, 8, 0.2) 0%,
+          rgba(8, 8, 8, 0.7) 60%,
+          rgba(8, 8, 8, 1) 100%
+        );
+        z-index: 1;
+      }
+      .hero-visual {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .hero-img-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #0e1a22 0%, #111 40%, #0a1520 100%);
+        position: relative;
+      }
+      .hero-img-placeholder::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          -55deg,
+          transparent,
+          transparent 60px,
+          rgba(2, 119, 189, 0.03) 60px,
+          rgba(2, 119, 189, 0.03) 61px
+        );
+      }
+      .hero-img-placeholder::after {
+        content: "";
+        position: absolute;
+        bottom: -80px;
+        right: -80px;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(2, 119, 189, 0.12) 0%,
+          transparent 70%
+        );
+      }
+      .hero-stripe {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 5px;
+        background: var(--blue);
+        transform: skewX(-8deg);
+        z-index: 2;
+        opacity: 0.7;
+      }
+      .hero-stripe-1 {
+        right: 25%;
+      }
+      .hero-stripe-2 {
+        right: calc(25% - 14px);
+        width: 2px;
+        opacity: 0.35;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 3;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 24px;
+        width: 100%;
+      }
+      .hero-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+        animation: fadeUp 0.8s 0.1s both;
+      }
+      .hero-eyebrow-line {
+        width: 40px;
+        height: 2px;
+        background: var(--blue);
+      }
+      .hero-title {
+        font-size: clamp(64px, 12vw, 150px);
+        margin-bottom: 24px;
+        animation: fadeUp 0.8s 0.2s both;
+      }
+      .hero-title .accent {
+        color: var(--blue);
+      }
+      .hero-subtitle {
+        font-size: clamp(14px, 2vw, 18px);
+        color: rgba(255, 255, 255, 0.65);
+        font-weight: 300;
+        max-width: 480px;
+        margin-bottom: 40px;
+        line-height: 1.7;
+        animation: fadeUp 0.8s 0.3s both;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        animation: fadeUp 0.8s 0.4s both;
+      }
+      .btn-primary {
+        background: var(--blue);
+        color: var(--black);
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 14px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 14px 36px;
+        border-radius: 2px;
+        transition: var(--transition);
+        display: inline-block;
+      }
+      .btn-primary:hover {
+        background: #0288d1;
+        transform: translateY(-2px);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--white);
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 13px 32px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 2px;
+        transition: var(--transition);
+        display: inline-block;
+      }
+      .btn-outline:hover {
+        border-color: var(--blue);
+        color: var(--blue);
+      }
+      .hero-scroll {
+        position: absolute;
+        bottom: 32px;
+        right: 24px;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        animation: fadeUp 1s 0.8s both;
+      }
+      .hero-scroll span {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
+        writing-mode: vertical-rl;
+      }
+      .hero-scroll-line {
+        width: 1px;
+        height: 60px;
+        background: linear-gradient(to bottom, var(--blue), transparent);
+        animation: scrollLine 2s infinite;
+      }
+
+      /* ── STATS ── */
+      #stats {
+        background: var(--blue);
+        padding: 48px 0;
+        overflow: hidden;
+        position: relative;
+      }
+      #stats::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -20px;
+        right: -20px;
+        background: var(--blue);
+        transform: skewY(-1deg);
+      }
+      .stats-grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+      }
+      .stat-item {
+        text-align: center;
+        padding: 16px 24px;
+        position: relative;
+      }
+      .stat-item:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 20%;
+        right: 0;
+        height: 60%;
+        width: 1px;
+        background: rgba(8, 8, 8, 0.2);
+      }
+      .stat-number {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 900;
+        font-size: clamp(52px, 8vw, 88px);
+        color: var(--black);
+        line-height: 1;
+        letter-spacing: -0.02em;
+      }
+      .stat-suffix {
+        color: var(--black);
+        opacity: 0.6;
+        font-size: 0.6em;
+      }
+      .stat-label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 600;
+        font-size: 13px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(8, 8, 8, 0.65);
+        margin-top: 4px;
+      }
+
+      /* ── SECTIONS COMMON ── */
+      .section-pad {
+        padding: 100px 0;
+      }
+      .section-pad-sm {
+        padding: 70px 0;
+      }
+      .section-header {
+        margin-bottom: 60px;
+      }
+      .section-header .label {
+        margin-bottom: 12px;
+        display: block;
+      }
+      .section-divider {
+        width: 48px;
+        height: 3px;
+        background: var(--blue);
+        margin-top: 20px;
+      }
+
+      /* ── ABOUT ── */
+      #about {
+        background: var(--black);
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .about-visual {
+        position: relative;
+        height: 520px;
+      }
+      .about-img {
+        position: absolute;
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .about-img-main {
+        top: 0;
+        left: 0;
+        width: 75%;
+        height: 80%;
+        background: var(--gray-mid);
+      }
+      .about-img-accent {
+        bottom: 0;
+        right: 0;
+        width: 55%;
+        height: 55%;
+        background: var(--gray-dark);
+        border: 2px solid var(--gray-border);
+      }
+      .about-img-placeholder {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .about-img-main .about-img-placeholder {
+        background: linear-gradient(135deg, #111b24 0%, #0c1117 100%);
+      }
+      .about-img-accent .about-img-placeholder {
+        background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+      }
+      .about-img-placeholder::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 30px,
+          rgba(2, 119, 189, 0.03) 30px,
+          rgba(2, 119, 189, 0.03) 31px
+        );
+      }
+      .about-img-icon {
+        width: 48px;
+        height: 48px;
+        opacity: 0.15;
+        position: relative;
+        z-index: 1;
+      }
+      .about-year-badge {
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        width: 100px;
+        height: 100px;
+        background: var(--blue);
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 3;
+      }
+      .about-year-badge strong {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 900;
+        font-size: 28px;
+        color: var(--black);
+        line-height: 1;
+      }
+      .about-year-badge span {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(8, 8, 8, 0.6);
+      }
+      .about-text p {
+        color: rgba(255, 255, 255, 0.65);
+        font-weight: 300;
+        margin-bottom: 20px;
+        font-size: 16px;
+        line-height: 1.8;
+      }
+      .about-badges {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 32px;
+      }
+      .badge {
+        border: 1px solid var(--gray-border);
+        padding: 8px 16px;
+        border-radius: 2px;
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 600;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .badge-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--blue);
+        flex-shrink: 0;
+      }
+
+      /* ── SERVICES ── */
+      #services {
+        background: var(--gray-dark);
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2px;
+        background: var(--gray-border);
+      }
+      .service-card {
+        background: var(--gray-dark);
+        padding: 48px 40px;
+        position: relative;
+        overflow: hidden;
+        transition: var(--transition);
+        cursor: default;
+      }
+      .service-card::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--blue);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform var(--transition);
+      }
+      .service-card:hover::before {
+        transform: scaleX(1);
+      }
+      .service-card:hover {
+        background: #141414;
+      }
+      .service-number {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 900;
+        font-size: 80px;
+        color: rgba(2, 119, 189, 0.06);
+        position: absolute;
+        top: 16px;
+        right: 24px;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        transition: color var(--transition);
+      }
+      .service-card:hover .service-number {
+        color: rgba(2, 119, 189, 0.1);
+      }
+      .service-icon {
+        width: 52px;
+        height: 52px;
+        background: var(--blue-dim);
+        border: 1px solid rgba(2, 119, 189, 0.2);
+        border-radius: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+      }
+      .service-icon svg {
+        width: 24px;
+        height: 24px;
+        stroke: var(--blue);
+        fill: none;
+      }
+      .service-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 28px;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        margin-bottom: 16px;
+      }
+      .service-desc {
+        color: rgba(255, 255, 255, 0.55);
+        font-weight: 300;
+        line-height: 1.8;
+        font-size: 15px;
+        margin-bottom: 24px;
+      }
+      .service-features {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .service-feature {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .service-feature::before {
+        content: "";
+        width: 16px;
+        height: 1px;
+        background: var(--blue);
+        flex-shrink: 0;
+      }
+
+      /* ── PRICING ── */
+      #pricing {
+        background: var(--black);
+      }
+      .pricing-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--gray-border);
+      }
+      .pricing-table thead tr {
+        background: var(--blue);
+      }
+      .pricing-table thead th {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 13px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--black);
+        padding: 16px 24px;
+        text-align: left;
+      }
+      .pricing-table thead th:last-child {
+        text-align: right;
+      }
+      .pricing-table tbody tr {
+        border-bottom: 1px solid var(--gray-border);
+        transition: background var(--transition);
+      }
+      .pricing-table tbody tr:hover {
+        background: var(--gray-mid);
+      }
+      .pricing-table tbody td {
+        padding: 18px 24px;
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.75);
+        font-weight: 300;
+      }
+      .pricing-table tbody td:first-child {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--white);
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+      .pricing-table tbody td:last-child {
+        text-align: right;
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 20px;
+        color: var(--blue);
+        letter-spacing: 0;
+      }
+      .pricing-note {
+        margin-top: 24px;
+        padding: 20px 24px;
+        background: var(--blue-dim);
+        border: 1px solid rgba(2, 119, 189, 0.15);
+        border-radius: 2px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 300;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .pricing-note strong {
+        color: var(--blue);
+        font-weight: 600;
+      }
+
+      /* ── TEAM ── */
+      #team {
+        background: var(--gray-dark);
+      }
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+        background: var(--gray-border);
+      }
+      .trainer-card {
+        background: var(--gray-dark);
+        overflow: hidden;
+        position: relative;
+        group: true;
+        cursor: default;
+      }
+      .trainer-photo {
+        height: 280px;
+        background: var(--gray-mid);
+        position: relative;
+        overflow: hidden;
+      }
+      .trainer-photo-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(180deg, #151515 0%, #0f0f0f 100%);
+      }
+      .trainer-photo-placeholder::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          -30deg,
+          transparent,
+          transparent 20px,
+          rgba(2, 119, 189, 0.02) 20px,
+          rgba(2, 119, 189, 0.02) 21px
+        );
+      }
+      .trainer-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: var(--gray-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        border: 2px solid rgba(2, 119, 189, 0.15);
+      }
+      .trainer-avatar svg {
+        width: 36px;
+        height: 36px;
+        stroke: var(--muted);
+        fill: none;
+      }
+      .trainer-info {
+        padding: 24px;
+        border-top: 1px solid var(--gray-border);
+        position: relative;
+      }
+      .trainer-info::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 24px;
+        width: 36px;
+        height: 2px;
+        background: var(--blue);
+      }
+      .trainer-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 22px;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        margin-bottom: 4px;
+      }
+      .trainer-role {
+        font-size: 13px;
+        color: var(--blue);
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .trainer-certs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .cert-tag {
+        font-size: 11px;
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+        border: 1px solid var(--gray-border);
+        padding: 3px 10px;
+        border-radius: 1px;
+      }
+
+      /* ── GALLERY ── */
+      #gallery {
+        background: var(--black);
+      }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: 240px 240px;
+        gap: 3px;
+      }
+      .gallery-item {
+        overflow: hidden;
+        position: relative;
+        background: var(--gray-mid);
+        cursor: pointer;
+      }
+      .gallery-item:nth-child(1) {
+        grid-column: span 5;
+      }
+      .gallery-item:nth-child(2) {
+        grid-column: span 4;
+      }
+      .gallery-item:nth-child(3) {
+        grid-column: span 3;
+      }
+      .gallery-item:nth-child(4) {
+        grid-column: span 3;
+      }
+      .gallery-item:nth-child(5) {
+        grid-column: span 5;
+      }
+      .gallery-item:nth-child(6) {
+        grid-column: span 4;
+      }
+      .gallery-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .gallery-item:hover .gallery-placeholder {
+        transform: scale(1.04);
+      }
+      .gallery-item:nth-child(1) .gallery-placeholder {
+        background: linear-gradient(135deg, #0d1b26 0%, #0a1118 100%);
+      }
+      .gallery-item:nth-child(2) .gallery-placeholder {
+        background: linear-gradient(135deg, #121212 0%, #0e1318 100%);
+      }
+      .gallery-item:nth-child(3) .gallery-placeholder {
+        background: linear-gradient(135deg, #0f1f2b 0%, #0c1520 100%);
+      }
+      .gallery-item:nth-child(4) .gallery-placeholder {
+        background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+      }
+      .gallery-item:nth-child(5) .gallery-placeholder {
+        background: linear-gradient(135deg, #0d1420 0%, #111 100%);
+      }
+      .gallery-item:nth-child(6) .gallery-placeholder {
+        background: linear-gradient(135deg, #141414 0%, #0e1a20 100%);
+      }
+      .gallery-placeholder::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 40px,
+          rgba(2, 119, 189, 0.025) 40px,
+          rgba(2, 119, 189, 0.025) 41px
+        );
+      }
+      .gallery-placeholder-icon {
+        opacity: 0.12;
+        position: relative;
+        z-index: 1;
+      }
+      .gallery-placeholder-icon svg {
+        width: 40px;
+        height: 40px;
+        stroke: var(--blue);
+        fill: none;
+      }
+      .gallery-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(2, 119, 189, 0.08);
+        opacity: 0;
+        transition: opacity var(--transition);
+        z-index: 2;
+      }
+      .gallery-item:hover .gallery-overlay {
+        opacity: 1;
+      }
+
+      /* ── FAQ ── */
+      #faq {
+        background: var(--gray-dark);
+      }
+      .faq-list {
+        max-width: 760px;
+      }
+      .faq-item {
+        border-bottom: 1px solid var(--gray-border);
+      }
+      .faq-question {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 24px 0;
+        background: none;
+        color: var(--white);
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        text-align: left;
+        transition: color var(--transition);
+      }
+      .faq-question:hover {
+        color: var(--blue);
+      }
+      .faq-icon {
+        width: 28px;
+        height: 28px;
+        border: 1px solid var(--gray-border);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: var(--transition);
+        position: relative;
+      }
+      .faq-icon::before,
+      .faq-icon::after {
+        content: "";
+        position: absolute;
+        background: var(--muted);
+        border-radius: 1px;
+        transition: var(--transition);
+      }
+      .faq-icon::before {
+        width: 12px;
+        height: 1.5px;
+      }
+      .faq-icon::after {
+        width: 1.5px;
+        height: 12px;
+      }
+      .faq-item.open .faq-icon {
+        border-color: var(--blue);
+        background: var(--blue-dim);
+      }
+      .faq-item.open .faq-icon::before {
+        background: var(--blue);
+      }
+      .faq-item.open .faq-icon::after {
+        transform: rotate(90deg);
+        opacity: 0;
+      }
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+          padding 0.3s;
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 300;
+        font-size: 15px;
+        line-height: 1.8;
+        padding: 0;
+      }
+      .faq-item.open .faq-answer {
+        max-height: 300px;
+        padding-bottom: 24px;
+      }
+
+      /* ── CONTACT ── */
+      #contact {
+        background: var(--black);
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: start;
+      }
+      .contact-info {
+      }
+      .contact-detail {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--gray-border);
+      }
+      .contact-detail:first-child {
+        padding-top: 0;
+      }
+      .contact-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--blue-dim);
+        border: 1px solid rgba(2, 119, 189, 0.2);
+        border-radius: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .contact-icon svg {
+        width: 18px;
+        height: 18px;
+        stroke: var(--blue);
+        fill: none;
+      }
+      .contact-label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 4px;
+      }
+      .contact-value {
+        font-size: 16px;
+        color: var(--white);
+        font-weight: 300;
+      }
+      .contact-value a:hover {
+        color: var(--blue);
+      }
+      .social-links {
+        display: flex;
+        gap: 12px;
+        margin-top: 32px;
+      }
+      .social-link {
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--gray-border);
+        border-radius: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+      .social-link:hover {
+        border-color: var(--blue);
+        background: var(--blue-dim);
+      }
+      .social-link svg {
+        width: 16px;
+        height: 16px;
+        stroke: var(--muted);
+        fill: none;
+        transition: stroke var(--transition);
+      }
+      .social-link:hover svg {
+        stroke: var(--blue);
+      }
+      .map-box {
+        width: 100%;
+        height: 220px;
+        background: var(--gray-mid);
+        border: 1px solid var(--gray-border);
+        border-radius: 2px;
+        margin-top: 32px;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .map-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #0d1b26 0%, #101820 100%);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .map-placeholder::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 30px,
+            rgba(2, 119, 189, 0.04) 30px,
+            rgba(2, 119, 189, 0.04) 31px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 30px,
+            rgba(2, 119, 189, 0.04) 30px,
+            rgba(2, 119, 189, 0.04) 31px
+          );
+      }
+      .map-pin {
+        position: relative;
+        z-index: 1;
+      }
+      .map-pin svg {
+        width: 32px;
+        height: 32px;
+        stroke: var(--blue);
+        fill: none;
+      }
+      .map-text {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        position: relative;
+        z-index: 1;
+      }
+      .contact-form {
+      }
+      .form-row {
+        margin-bottom: 16px;
+      }
+      .form-row label {
+        display: block;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .form-row input,
+      .form-row textarea,
+      .form-row select {
+        width: 100%;
+        background: var(--gray-mid);
+        border: 1px solid var(--gray-border);
+        border-radius: 2px;
+        color: var(--white);
+        font-family: "Barlow", sans-serif;
+        font-size: 15px;
+        font-weight: 300;
+        padding: 12px 16px;
+        transition: border-color var(--transition);
+        appearance: none;
+        outline: none;
+      }
+      .form-row input:focus,
+      .form-row textarea:focus,
+      .form-row select:focus {
+        border-color: var(--blue);
+        background: rgba(2, 119, 189, 0.04);
+      }
+      .form-row input::placeholder,
+      .form-row textarea::placeholder {
+        color: rgba(255, 255, 255, 0.2);
+      }
+      .form-row textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+      .form-row select {
+        cursor: pointer;
+      }
+      .form-row select option {
+        background: var(--gray-dark);
+      }
+      .form-cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .form-submit {
+        width: 100%;
+        background: var(--blue);
+        color: var(--black);
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 14px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 16px;
+        border-radius: 2px;
+        transition: var(--transition);
+        margin-top: 8px;
+      }
+      .form-submit:hover {
+        background: #0288d1;
+        transform: translateY(-1px);
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--gray-dark);
+        border-top: 1px solid var(--gray-border);
+        padding: 48px 0 32px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 60px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid var(--gray-border);
+        margin-bottom: 32px;
+      }
+      .footer-logo {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 900;
+        font-size: 24px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+      .footer-logo span {
+        color: var(--blue);
+      }
+      .footer-desc {
+        font-size: 14px;
+        color: var(--muted);
+        font-weight: 300;
+        line-height: 1.7;
+        max-width: 280px;
+      }
+      .footer-col-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--white);
+        margin-bottom: 20px;
+      }
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .footer-links a {
+        font-size: 14px;
+        color: var(--muted);
+        font-weight: 300;
+        transition: color var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .footer-links a::before {
+        content: "";
+        width: 12px;
+        height: 1px;
+        background: var(--gray-border);
+        flex-shrink: 0;
+        transition: background var(--transition);
+      }
+      .footer-links a:hover {
+        color: var(--blue);
+      }
+      .footer-links a:hover::before {
+        background: var(--blue);
+      }
+      .footer-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .footer-copy {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.3);
+        font-weight: 300;
+      }
+      .footer-legal {
+        display: flex;
+        gap: 24px;
+      }
+      .footer-legal a {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.3);
+        transition: color var(--transition);
+      }
+      .footer-legal a:hover {
+        color: var(--blue);
+      }
+
+      /* ── MODAL (Regulamin / Polityka) ── */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 200;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+      .modal-overlay.open {
+        display: flex;
+      }
+      .modal {
+        background: var(--gray-dark);
+        border: 1px solid var(--gray-border);
+        border-radius: 2px;
+        max-width: 640px;
+        width: 100%;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .modal-header {
+        padding: 24px 28px;
+        border-bottom: 1px solid var(--gray-border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-shrink: 0;
+      }
+      .modal-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 800;
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .modal-close {
+        width: 32px;
+        height: 32px;
+        background: var(--gray-mid);
+        border-radius: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: none;
+        color: var(--muted);
+        font-size: 18px;
+        transition: var(--transition);
+      }
+      .modal-close:hover {
+        background: var(--gray-border);
+        color: var(--white);
+      }
+      .modal-body {
+        padding: 28px;
+        overflow-y: auto;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 300;
+        line-height: 1.8;
+      }
+      .modal-body h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        text-transform: uppercase;
+        color: var(--white);
+        margin: 20px 0 8px;
+        letter-spacing: 0.06em;
+      }
+      .modal-body h3:first-child {
+        margin-top: 0;
+      }
+      .modal-body p {
+        margin-bottom: 12px;
+      }
+
+      /* ── ANIMATIONS ── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes scrollLine {
+        0% {
+          opacity: 0;
+          transform: scaleY(0);
+          transform-origin: top;
+        }
+        50% {
+          opacity: 1;
+          transform: scaleY(1);
+          transform-origin: top;
+        }
+        100% {
+          opacity: 0;
+          transform: scaleY(1);
+          transform-origin: bottom;
+        }
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ── MOBILE ── */
+      @media (max-width: 900px) {
+        .nav-links {
+          display: none;
+        }
+        .nav-hamburger {
+          display: flex;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .about-visual {
+          height: 320px;
+        }
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+        .team-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .gallery-grid {
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: repeat(3, 200px);
+        }
+        .gallery-item {
+          grid-column: span 1 !important;
+        }
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+        .section-pad {
+          padding: 70px 0;
+        }
+        .stats-grid {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+        .stat-number {
+          font-size: 38px;
+        }
+        .pricing-table {
+          font-size: 13px;
+        }
+        .pricing-table thead th,
+        .pricing-table tbody td {
+          padding: 12px 14px;
+        }
+      }
+      @media (max-width: 600px) {
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+        .gallery-grid {
+          grid-template-columns: 1fr;
+          grid-template-rows: repeat(6, 200px);
+        }
+        .form-cols {
+          grid-template-columns: 1fr;
+        }
+        .hero-title {
+          font-size: 56px;
+        }
+        .stat-number {
+          font-size: 32px;
+        }
+        .stat-label {
+          font-size: 11px;
+        }
+        .stat-item {
+          padding: 12px 8px;
+        }
+      }
+    </style>
   </head>
-
   <body>
-    <nav class="container-fluid">
-      <ul>
-        <li><strong>Elysium Sport & Fitness</strong></li>
+    <!-- NAV -->
+    <nav>
+      <a href="#hero" class="nav-logo">ELYSIUM SPORT <span>&</span> FITNESS</a>
+      <ul class="nav-links">
+        <li><a href="#about">O nas</a></li>
+        <li><a href="#services">Usługi</a></li>
+        <li><a href="#pricing">Cennik</a></li>
+        <li><a href="#team">Trenerzy</a></li>
+        <li><a href="#gallery">Galeria</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact" class="nav-cta">Kontakt</a></li>
       </ul>
-
-      <ul>
-        <li><a href="#packages">Pakiety</a></li>
-        <li><a href="#schedule">Grafik</a></li>
-        <li><a href="#contact" role="button">Dołącz teraz</a></li>
-      </ul>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about" onclick="closeMobile()">O nas</a>
+      <a href="#services" onclick="closeMobile()">Usługi</a>
+      <a href="#pricing" onclick="closeMobile()">Cennik</a>
+      <a href="#team" onclick="closeMobile()">Trenerzy</a>
+      <a href="#gallery" onclick="closeMobile()">Galeria</a>
+      <a href="#faq" onclick="closeMobile()">FAQ</a>
+      <a href="#contact" onclick="closeMobile()">Kontakt</a>
+    </div>
 
-    <main class="container">
-      <div class="grid">
-        <section class="cinema">
-          <div>
-            <hgroup>
-              <h2>Trenuj razem. Osiągaj więcej.</h2>
-              <h3>
-                Kinowa, społecznościowa strona dla Elysium Sport & Fitness w
-                Kliniskach Wielkich.
-              </h3>
-            </hgroup>
-
-            <p>
-              Elysium Sport & Fitness to miejsce dla osób, które chcą trenować z
-              energią, rozwijać siłę, poprawiać kondycję i korzystać ze wsparcia
-              trenerów personalnych.
-            </p>
-
-            <p>
-              <a href="#contact" role="button">Dołącz teraz</a>
-            </p>
-          </div>
-        </section>
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-visual">
+        <div class="hero-img-placeholder"></div>
       </div>
-
-      <div class="strip">
-        <div>
-          <h3>Trening personalny</h3>
-          <p>Jasny plan, indywidualne podejście i realne wsparcie trenera.</p>
+      <div class="hero-bg"></div>
+      <div class="hero-stripe hero-stripe-1"></div>
+      <div class="hero-stripe hero-stripe-2"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-line"></div>
+          <span class="label">Sport & Fitness · Rehabilitacja</span>
         </div>
-
-        <div>
-          <h3>Energia zajęć</h3>
-          <p>
-            HIIT, trening siłowy i CrossFit-style dla różnych poziomów
-            zaawansowania.
-          </p>
-        </div>
-
-        <div>
-          <h3>Lokalny klub</h3>
-          <p>Przyjazna atmosfera i społeczność w Kliniskach Wielkich.</p>
-        </div>
-      </div>
-
-      <section id="packages">
-        <div class="section-title">
-          <h2>Wybierz swoją drogę.</h2>
-          <p>
-            Pełny cennik pakietów treningu personalnego. Ceny możesz później
-            łatwo zmienić.
-          </p>
-        </div>
-
-        <div class="cards">
-          <div class="card">
-            <h3>Konsultacja</h3>
-            <p class="price">99 zł</p>
-            <p>Zacznij od oceny celu, poziomu i kierunku treningowego.</p>
-          </div>
-
-          <div class="card featured-card">
-            <h3>8 treningów</h3>
-            <p class="price">699 zł</p>
-            <p>Pakiet treningu personalnego dla regularnego progresu.</p>
-          </div>
-
-          <div class="card">
-            <h3>16 treningów</h3>
-            <p class="price">1199 zł</p>
-            <p>
-              Zaawansowany pakiet dla osób nastawionych na mocniejsze efekty.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="trainers">
-        <div class="section-title">
-          <h2>Trenerzy</h2>
-          <p>
-            Profile trenerów z opisami specjalizacji. Zdjęcia i dane można
-            później podmienić na prawdziwe.
-          </p>
-        </div>
-
-        <div class="cards">
-          <div class="card trainer-card">
-            <img
-              src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=85"
-              alt="Trener siłowy"
-            />
-
-            <div>
-              <h3>Trener siłowy</h3>
-              <p>Technika, pewność na siłowni i systematyczny progres.</p>
-            </div>
-          </div>
-
-          <div class="card trainer-card featured-card">
-            <img
-              src="https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=900&q=85"
-              alt="Trener HIIT"
-            />
-
-            <div>
-              <h3>Trener HIIT</h3>
-              <p>Szybkość, kondycja, wytrzymałość i wysoka energia treningu.</p>
-            </div>
-          </div>
-
-          <div class="card trainer-card">
-            <img
-              src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=900&q=85"
-              alt="Trener funkcjonalny"
-            />
-
-            <div>
-              <h3>Trener funkcjonalny</h3>
-              <p>
-                Trening CrossFit-style, jakość ruchu i sprawność całego ciała.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="schedule">
-        <div class="section-title">
-          <h2>Rytm tygodnia.</h2>
-          <p>
-            Przykładowy grafik zajęć. Zapisy odbywają się przez formularz
-            kontaktowy.
-          </p>
-        </div>
-
-        <div class="timeline">
-          <div class="event">
-            <h3>Poniedziałek 18:00 — HIIT</h3>
-            <p>
-              Intensywny trening kondycyjny, który poprawia wydolność i spala
-              energię.
-            </p>
-          </div>
-
-          <div class="event">
-            <h3>Środa 19:00 — Trening siłowy</h3>
-            <p>
-              Progresywne dźwiganie, technika i budowanie solidnej podstawy
-              siłowej.
-            </p>
-          </div>
-
-          <div class="event">
-            <h3>Piątek 18:30 — CrossFit-style</h3>
-            <p>
-              Funkcjonalny trening całego ciała w dynamicznej atmosferze grupy.
-            </p>
-          </div>
-        </div>
-
-        <figure>
-          <img
-            src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=1600&q=85"
-            alt="Atmosfera zajęć grupowych"
-          />
-
-          <figcaption>
-            <a href="https://unsplash.com/s/photos/gym-class" target="_blank">
-              Zdjęcie zajęć grupowych
-            </a>
-          </figcaption>
-        </figure>
-
-        <h3>Trening napędzany społecznością</h3>
-
-        <p>
-          Ten kierunek wizualny sprawia, że klub wygląda żywo, motywująco i
-          dostępnie, a jednocześnie zachowuje mocny, nowoczesny charakter.
+        <h1 class="display hero-title">
+          PRZEKRACZAJ<br />SWOJE<br /><span class="accent">GRANICE</span>
+        </h1>
+        <p class="hero-subtitle">
+          Profesjonalna siłownia i centrum fitness w sercu miasta. Treningi dla
+          każdego — od początkujących po sportowców wyczynowych.
         </p>
-      </section>
-    </main>
-
-    <section aria-label="Subscribe example" id="contact">
-      <div class="container">
-        <article>
-          <hgroup>
-            <h2>Dołącz do społeczności.</h2>
-            <h3>Wyślij zgłoszenie na konsultację treningową.</h3>
-          </hgroup>
-
-          <form class="grid" id="contactForm">
-            <input
-              type="text"
-              id="firstname"
-              name="firstname"
-              placeholder="Imię i nazwisko"
-              aria-label="Imię i nazwisko"
-              required
-            />
-
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Adres e-mail"
-              aria-label="Adres e-mail"
-              required
-            />
-
-            <input
-              type="text"
-              id="phone"
-              name="phone"
-              placeholder="Numer telefonu"
-              aria-label="Numer telefonu"
-              required
-            />
-
-            <select
-              id="training"
-              name="training"
-              aria-label="Wybierz temat"
-              required
-            >
-              <option value="" selected disabled>
-                Wybierz, co Cię interesuje
-              </option>
-              <option>Konsultacja treningu personalnego</option>
-              <option>Pakiet 8 treningów</option>
-              <option>Pakiet 16 treningów</option>
-              <option>Zajęcia HIIT</option>
-              <option>Trening siłowy</option>
-              <option>CrossFit-style</option>
-            </select>
-
-            <textarea
-              id="message"
-              name="message"
-              placeholder="Napisz, jaki masz cel, kiedy chcesz trenować i czy masz doświadczenie na siłowni."
-              aria-label="Wiadomość"
-            ></textarea>
-
-            <button type="submit">Dołącz teraz</button>
-          </form>
-
-          <div class="contact-details">
-            <div class="contact-box">
-              <h3>Lokalizacja</h3>
-              <p><strong>Elysium Sport & Fitness</strong></p>
-              <p>Kliniska Wielkie</p>
-              <p>Dodaj dokładny adres klubu.</p>
-            </div>
-
-            <div class="contact-box">
-              <h3>Kontakt</h3>
-              <p><strong>Telefon:</strong> Dodaj numer telefonu</p>
-              <p><strong>Kolory marki:</strong> czarny, biały, niebieski</p>
-              <p><strong>Akcent:</strong> #0066cc</p>
-            </div>
-          </div>
-        </article>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Zapisz się na trening</a>
+          <a href="#services" class="btn-outline">Poznaj ofertę</a>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <div class="hero-scroll-line"></div>
+        <span>Scroll</span>
       </div>
     </section>
 
-    <footer class="container">
-      <small>
-        <a href="#packages">Pakiety</a> • <a href="#trainers">Trenerzy</a> •
-        <a href="#schedule">Grafik</a> •
-        <a href="#contact">Kontakt</a>
-      </small>
+    <!-- STATS -->
+    <section id="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number" data-target="12">
+              0<span class="stat-suffix">+</span>
+            </div>
+            <div class="stat-label">Lat doświadczenia</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="2400">
+              0<span class="stat-suffix">+</span>
+            </div>
+            <div class="stat-label">Zadowolonych klientów</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="18">
+              0<span class="stat-suffix"></span>
+            </div>
+            <div class="stat-label">Certyfikowanych trenerów</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section-pad">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-visual reveal">
+            <div class="about-img about-img-main">
+              <div class="about-img-placeholder">
+                <svg
+                  class="about-img-icon"
+                  viewBox="0 0 48 48"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.5"
+                >
+                  <rect x="4" y="20" width="40" height="8" rx="4" />
+                  <circle cx="12" cy="24" r="6" />
+                  <circle cx="36" cy="24" r="6" />
+                </svg>
+              </div>
+            </div>
+            <div class="about-img about-img-accent">
+              <div class="about-img-placeholder">
+                <svg
+                  class="about-img-icon"
+                  viewBox="0 0 48 48"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.5"
+                >
+                  <path d="M24 4l4 12h12l-10 7 4 12-10-7-10 7 4-12L8 16h12z" />
+                </svg>
+              </div>
+              <div class="about-year-badge">
+                <strong>2013</strong>
+                <span>od roku</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-text reveal">
+            <span class="label">O nas</span>
+            <h2 class="section-title" style="margin-bottom: 24px">
+              NASZA<br />HISTORIA
+            </h2>
+            <p>
+              Elysium Sport & Fitness powstało z pasji do sportu i głębokiego
+              przekonania, że aktywność fizyczna powinna być dostępna dla
+              każdego — niezależnie od wieku, poziomu zaawansowania czy celów.
+            </p>
+            <p>
+              Od ponad dekady budujemy społeczność ludzi, którzy codziennie
+              wybierają ruch zamiast stagnacji. Nasz zespół certyfikowanych
+              trenerów i specjalistów od rehabilitacji sprawia, że każdy krok w
+              kierunku lepszej formy jest bezpieczny i efektywny.
+            </p>
+            <p>
+              Wyposażenie najwyższej klasy, przestronne sale treningowe i
+              indywidualne podejście do każdego klienta — to fundamenty, na
+              których zbudowaliśmy Elysium.
+            </p>
+            <div class="about-badges">
+              <div class="badge">
+                <span class="badge-dot"></span>Certyfikat ISO 9001
+              </div>
+              <div class="badge">
+                <span class="badge-dot"></span>Najlepsza siłownia 2023
+              </div>
+              <div class="badge">
+                <span class="badge-dot"></span>Partner PZFS
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section-pad">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="label">Co oferujemy</span>
+          <h2 class="section-title">NASZE<br />USŁUGI</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="services-grid reveal">
+          <div class="service-card">
+            <div class="service-number">01</div>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.5">
+                <rect x="3" y="10" width="18" height="4" rx="2" />
+                <circle cx="7" cy="12" r="3" />
+                <circle cx="17" cy="12" r="3" />
+              </svg>
+            </div>
+            <h3 class="service-title">Siłownia & Fitness</h3>
+            <p class="service-desc">
+              Ponad 500 m² nowoczesnej przestrzeni treningowej z najnowszym
+              sprzętem cardio i siłowym. Strefy dedykowane trenowaniom
+              funkcjonalnym, wolnym ciężarom oraz maszynom.
+            </p>
+            <ul class="service-features">
+              <li class="service-feature">Ponad 120 urządzeń treningowych</li>
+              <li class="service-feature">Strefa free weights & strongman</li>
+              <li class="service-feature">Dedykowana strefa cardio</li>
+              <li class="service-feature">Treningi EMS & HIIT</li>
+              <li class="service-feature">Strefa stretching & mobilności</li>
+            </ul>
+          </div>
+          <div class="service-card">
+            <div class="service-number">02</div>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.5">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"
+                />
+                <path d="M8 12h8M12 8v8" />
+              </svg>
+            </div>
+            <h3 class="service-title">Rehabilitacja & Fizjoterapia</h3>
+            <p class="service-desc">
+              Profesjonalne centrum rehabilitacji prowadzone przez
+              doświadczonych fizjoterapeutów. Kompleksowa diagnostyka, leczenie
+              urazów sportowych i powrót do pełnej sprawności.
+            </p>
+            <ul class="service-features">
+              <li class="service-feature">Diagnoza i ocena funkcjonalna</li>
+              <li class="service-feature">
+                Fizykoterapia (ultradźwięki, laser)
+              </li>
+              <li class="service-feature">Rehabilitacja pourazowa</li>
+              <li class="service-feature">Masaż sportowy i leczniczy</li>
+              <li class="service-feature">Kinezyterapia indywidualna</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="section-pad">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="label">Ile to kosztuje</span>
+          <h2 class="section-title">CENNIK<br />ZAJĘĆ</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="reveal">
+          <table class="pricing-table">
+            <thead>
+              <tr>
+                <th>Usługa</th>
+                <th>Czas</th>
+                <th>Opis</th>
+                <th>Cena</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Trening personalny</td>
+                <td>60 min</td>
+                <td>Indywidualny plan i nadzór trenera</td>
+                <td>150 zł</td>
+              </tr>
+              <tr>
+                <td>Trening personalny</td>
+                <td>90 min</td>
+                <td>Rozszerzony trening z analizą postępów</td>
+                <td>200 zł</td>
+              </tr>
+              <tr>
+                <td>Pakiet 10 treningów</td>
+                <td>60 min/szt.</td>
+                <td>Oszczędzasz 200 zł vs pojedynczy</td>
+                <td>1 300 zł</td>
+              </tr>
+              <tr>
+                <td>Konsultacja fizjoterapeutyczna</td>
+                <td>45 min</td>
+                <td>Diagnostyka, ocena funkcjonalna</td>
+                <td>120 zł</td>
+              </tr>
+              <tr>
+                <td>Sesja fizjoterapii</td>
+                <td>60 min</td>
+                <td>Pełna sesja terapeutyczna</td>
+                <td>160 zł</td>
+              </tr>
+              <tr>
+                <td>Masaż sportowy</td>
+                <td>60 min</td>
+                <td>Regeneracja mięśni i tkanek miękkich</td>
+                <td>130 zł</td>
+              </tr>
+              <tr>
+                <td>Masaż sportowy</td>
+                <td>30 min</td>
+                <td>Partia ciała lub masaż ekspresowy</td>
+                <td>80 zł</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pricing-note">
+            <svg
+              style="
+                width: 18px;
+                height: 18px;
+                stroke: var(--blue);
+                fill: none;
+                flex-shrink: 0;
+              "
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 8v4m0 4h.01" />
+            </svg>
+            Ceny dotyczą zajęć indywidualnych. W sprawie pakietów, voucherów i
+            karnetów dla firm —
+            <strong>skontaktuj się z nami bezpośrednio.</strong> Studenci i
+            seniorzy 50+ mają prawo do 15% zniżki.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team" class="section-pad">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="label">Nasi specjaliści</span>
+          <h2 class="section-title">POZNAJ<br />TRENERÓW</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="team-grid reveal">
+          <div class="trainer-card">
+            <div class="trainer-photo">
+              <div class="trainer-photo-placeholder">
+                <div class="trainer-avatar">
+                  <svg viewBox="0 0 24 24" stroke-width="1.5">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="trainer-info">
+              <div class="trainer-name">Kamil Nowak</div>
+              <div class="trainer-role">Head Trainer / Siłownia</div>
+              <div class="trainer-certs">
+                <span class="cert-tag">PZFS Level 3</span>
+                <span class="cert-tag">Strength & Cond.</span>
+                <span class="cert-tag">FMS</span>
+              </div>
+            </div>
+          </div>
+          <div class="trainer-card">
+            <div class="trainer-photo">
+              <div class="trainer-photo-placeholder">
+                <div class="trainer-avatar">
+                  <svg viewBox="0 0 24 24" stroke-width="1.5">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="trainer-info">
+              <div class="trainer-name">Anna Wiśniewska</div>
+              <div class="trainer-role">Fizjoterapeutka</div>
+              <div class="trainer-certs">
+                <span class="cert-tag">Mgr fizjoterapii</span>
+                <span class="cert-tag">McKenzie</span>
+                <span class="cert-tag">Kinesiotaping</span>
+              </div>
+            </div>
+          </div>
+          <div class="trainer-card">
+            <div class="trainer-photo">
+              <div class="trainer-photo-placeholder">
+                <div class="trainer-avatar">
+                  <svg viewBox="0 0 24 24" stroke-width="1.5">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="trainer-info">
+              <div class="trainer-name">Marcin Kowalczyk</div>
+              <div class="trainer-role">Personal Trainer</div>
+              <div class="trainer-certs">
+                <span class="cert-tag">CrossFit L2</span>
+                <span class="cert-tag">HIIT Coach</span>
+                <span class="cert-tag">Żywienie</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="section-pad">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="label">Przestrzeń</span>
+          <h2 class="section-title">GALERIA</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="gallery-grid reveal">
+          <div class="gallery-item">
+            <div class="gallery-placeholder">
+              <div class="gallery-placeholder-icon">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <path d="M3 9h18M9 21V9" />
+                </svg>
+              </div>
+            </div>
+            <div class="gallery-overlay"></div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-placeholder">
+              <div class="gallery-placeholder-icon">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="10" width="18" height="4" rx="2" />
+                  <circle cx="7" cy="12" r="3" />
+                  <circle cx="17" cy="12" r="3" />
+                </svg>
+              </div>
+            </div>
+            <div class="gallery-overlay"></div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-placeholder">
+              <div class="gallery-placeholder-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="gallery-overlay"></div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-placeholder">
+              <div class="gallery-placeholder-icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </div>
+            </div>
+            <div class="gallery-overlay"></div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-placeholder">
+              <div class="gallery-placeholder-icon">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <path d="M3 9h18M9 21V9" />
+                </svg>
+              </div>
+            </div>
+            <div class="gallery-overlay"></div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-placeholder">
+              <div class="gallery-placeholder-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11.5 19.79 19.79 0 0 1 1.61 2.84 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 5.55 5.55l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 15.47z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="gallery-overlay"></div>
+          </div>
+        </div>
+        <p
+          style="
+            margin-top: 20px;
+            font-size: 13px;
+            color: var(--muted);
+            font-style: italic;
+            text-align: center;
+          "
+        >
+          Zastępcze kafle graficzne — gotowe na Twoje zdjęcia siłowni, treningów
+          i zespołu.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section-pad">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="label">Masz pytania?</span>
+          <h2 class="section-title">FAQ</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="faq-list reveal">
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Jak mogę zapisać się na trening personalny?
+              <div class="faq-icon"></div>
+            </button>
+            <div class="faq-answer">
+              Zapisy na treningi personalne odbywają się telefonicznie, mailowo
+              lub przez formularz kontaktowy na tej stronie. Po kontakcie nasz
+              koordynator skontaktuje się z Tobą, aby umówić pierwszą, bezpłatną
+              konsultację wstępną z trenerem.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Czy mogę przyjść bez wcześniejszego zapisu?
+              <div class="faq-icon"></div>
+            </button>
+            <div class="faq-answer">
+              Tak — siłownia jest otwarta bez wcześniejszego zapisu. Na zajęcia
+              indywidualne i sesje fizjoterapii obowiązuje jednak wcześniejsza
+              rezerwacja terminu, aby zagwarantować dostępność Twojego trenera
+              lub fizjoterapeuty.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Czy Elysium jest odpowiednie dla początkujących?
+              <div class="faq-icon"></div>
+            </button>
+            <div class="faq-answer">
+              Absolutnie tak! Pracujemy z osobami na każdym poziomie
+              zaawansowania. Nasi trenerzy przeprowadzą Cię przez bezpieczny
+              wdrożeniowy plan treningowy, dostosowany do Twoich możliwości i
+              celów. Nie musisz mieć żadnego wcześniejszego doświadczenia.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Jakie są godziny otwarcia siłowni?
+              <div class="faq-icon"></div>
+            </button>
+            <div class="faq-answer">
+              Siłownia jest otwarta od poniedziałku do piątku w godzinach
+              6:00–22:00, w soboty 8:00–20:00, a w niedziele 10:00–18:00.
+              Centrum rehabilitacji pracuje od poniedziałku do piątku 8:00–20:00
+              oraz w soboty 9:00–15:00.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Czy oferujecie zniżki dla seniorów i studentów?
+              <div class="faq-icon"></div>
+            </button>
+            <div class="faq-answer">
+              Tak — osoby powyżej 50. roku życia oraz studenci z ważną
+              legitymacją studencką mogą korzystać z 15% zniżki na wszystkie
+              zajęcia indywidualne. Zniżka nie łączy się z innymi promocjami.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Jak wygląda pierwsza wizyta u fizjoterapeuty?
+              <div class="faq-icon"></div>
+            </button>
+            <div class="faq-answer">
+              Pierwsza wizyta trwa 45 minut i obejmuje szczegółowy wywiad
+              medyczny, ocenę funkcjonalną i analizę biomechaniczną. Na tej
+              podstawie fizjoterapeuta opracowuje indywidualny plan
+              terapeutyczny i omawia go z Tobą przed przystąpieniem do leczenia.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Czy jest parking przy siłowni?
+              <div class="faq-icon"></div>
+            </button>
+            <div class="faq-answer">
+              Tak, do dyspozycji klientów Elysium jest bezpłatny parking
+              strzeżony bezpośrednio przy obiekcie z miejscami dla klientów
+              siłowni, w tym dla osób z niepełnosprawnościami.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section-pad">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="label">Napisz lub zadzwoń</span>
+          <h2 class="section-title">KONTAKT</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="contact-grid">
+          <div class="reveal">
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" stroke-width="1.5">
+                  <path
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z"
+                  />
+                  <path d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                </svg>
+              </div>
+              <div>
+                <div class="contact-label">Adres</div>
+                <div class="contact-value">
+                  ul. Sportowa 18, 00-001 Warszawa
+                </div>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" stroke-width="1.5">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11.5 19.79 19.79 0 0 1 1.61 2.84 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 5.55 5.55l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 15.47z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div class="contact-label">Telefon</div>
+                <div class="contact-value">
+                  <a href="tel:+48123456789">+48 123 456 789</a>
+                </div>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" stroke-width="1.5">
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              </div>
+              <div>
+                <div class="contact-label">E-mail</div>
+                <div class="contact-value">
+                  <a href="mailto:kontakt@elysiumfitness.pl"
+                    >kontakt@elysiumfitness.pl</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </div>
+              <div>
+                <div class="contact-label">Godziny otwarcia</div>
+                <div class="contact-value" style="font-size: 14px">
+                  Pn–Pt: 6:00–22:00<br />Sob: 8:00–20:00 · Nd: 10:00–18:00
+                </div>
+              </div>
+            </div>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" stroke-width="1.5">
+                  <path
+                    d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                  />
+                </svg>
+              </a>
+              <a href="#" class="social-link" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" stroke-width="1.5">
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </a>
+              <a href="#" class="social-link" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" stroke-width="1.5">
+                  <path
+                    d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"
+                  />
+                  <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+                </svg>
+              </a>
+            </div>
+            <div class="map-box">
+              <div class="map-placeholder">
+                <div class="map-pin">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z"
+                    />
+                    <path d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                  </svg>
+                </div>
+                <span class="map-text">ul. Sportowa 18, Warszawa</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-form reveal">
+            <form onsubmit="submitForm(event)">
+              <div class="form-cols">
+                <div class="form-row">
+                  <label>Imię i nazwisko</label>
+                  <input type="text" placeholder="Jan Kowalski" required />
+                </div>
+                <div class="form-row">
+                  <label>Telefon</label>
+                  <input type="tel" placeholder="+48 000 000 000" />
+                </div>
+              </div>
+              <div class="form-row">
+                <label>Adres e-mail</label>
+                <input type="email" placeholder="twoj@email.pl" required />
+              </div>
+              <div class="form-row">
+                <label>Temat zapytania</label>
+                <select>
+                  <option value="">Wybierz temat...</option>
+                  <option>Trening personalny</option>
+                  <option>Rehabilitacja / fizjoterapia</option>
+                  <option>Masaż sportowy</option>
+                  <option>Informacje ogólne</option>
+                  <option>Inne</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label>Wiadomość</label>
+                <textarea
+                  placeholder="Napisz, jak możemy Ci pomóc..."
+                ></textarea>
+              </div>
+              <button type="submit" class="form-submit">
+                Wyślij wiadomość
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-logo">ELYSIUM <span>&</span> FITNESS</div>
+            <p class="footer-desc">
+              Profesjonalne centrum fitness i rehabilitacji. Dołącz do
+              społeczności, która codziennie wybiera ruch i zdrowie.
+            </p>
+          </div>
+          <div>
+            <div class="footer-col-title">Nawigacja</div>
+            <ul class="footer-links">
+              <li><a href="#about">O nas</a></li>
+              <li><a href="#services">Usługi</a></li>
+              <li><a href="#pricing">Cennik</a></li>
+              <li><a href="#team">Trenerzy</a></li>
+              <li><a href="#gallery">Galeria</a></li>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#contact">Kontakt</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title">Informacje</div>
+            <ul class="footer-links">
+              <li>
+                <a
+                  href="#"
+                  onclick="
+                    openModal('regulamin');
+                    return false;
+                  "
+                  >Regulamin siłowni</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  onclick="
+                    openModal('polityka');
+                    return false;
+                  "
+                  >Polityka prywatności</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  onclick="
+                    openModal('rodo');
+                    return false;
+                  "
+                  >RODO</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">
+            © 2025 Elysium Sport & Fitness. Wszelkie prawa zastrzeżone.
+          </div>
+          <div class="footer-legal">
+            <a
+              href="#"
+              onclick="
+                openModal('regulamin');
+                return false;
+              "
+              >Regulamin</a
+            >
+            <a
+              href="#"
+              onclick="
+                openModal('polityka');
+                return false;
+              "
+              >Polityka prywatności</a
+            >
+            <a
+              href="#"
+              onclick="
+                openModal('rodo');
+                return false;
+              "
+              >RODO</a
+            >
+          </div>
+        </div>
+      </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <!-- MODALS -->
+    <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title" id="modal-title">Regulamin</div>
+          <button class="modal-close" onclick="closeModalDirect()">✕</button>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+      </div>
+    </div>
+
+    <script>
+      /* NAV */
+      document.getElementById("hamburger").addEventListener("click", () => {
+        document.getElementById("mobileMenu").classList.toggle("open");
+      });
+      function closeMobile() {
+        document.getElementById("mobileMenu").classList.remove("open");
+      }
+
+      /* STICKY NAV */
+      window.addEventListener("scroll", () => {
+        const nav = document.querySelector("nav");
+        nav.style.background =
+          window.scrollY > 50 ? "rgba(8,8,8,0.97)" : "rgba(8,8,8,0.92)";
+      });
+
+      /* FAQ */
+      function toggleFaq(btn) {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains("open");
+        document
+          .querySelectorAll(".faq-item.open")
+          .forEach((i) => i.classList.remove("open"));
+        if (!isOpen) item.classList.add("open");
+      }
+
+      /* REVEAL ON SCROLL */
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => entry.target.classList.add("visible"), 0);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+
+      /* COUNT UP */
+      function countUp(el, target) {
+        const duration = 1800;
+        const start = performance.now();
+        const suffix = el.querySelector(".stat-suffix")
+          ? el.querySelector(".stat-suffix").outerHTML
+          : "";
+        el.querySelector(".stat-suffix") &&
+          el.querySelector(".stat-suffix").remove();
+        function update(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const ease = 1 - Math.pow(1 - progress, 3);
+          const val = Math.round(ease * target);
+          el.childNodes[0].textContent = val.toLocaleString("pl-PL");
+          if (progress < 1) requestAnimationFrame(update);
+          else el.childNodes[0].textContent = target.toLocaleString("pl-PL");
+        }
+        requestAnimationFrame(update);
+        if (suffix) el.insertAdjacentHTML("beforeend", suffix);
+      }
+      const statsObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              document.querySelectorAll(".stat-number").forEach((el) => {
+                countUp(el, parseInt(el.dataset.target));
+              });
+              statsObserver.disconnect();
+            }
+          });
+        },
+        { threshold: 0.5 },
+      );
+      const statsSection = document.getElementById("stats");
+      if (statsSection) statsObserver.observe(statsSection);
+
+      /* FORM */
+      function submitForm(e) {
+        e.preventDefault();
+        const btn = e.target.querySelector(".form-submit");
+        btn.textContent = "Wysłano! Wkrótce się odezwiemy.";
+        btn.style.background = "#1a8c3a";
+        btn.disabled = true;
+        setTimeout(() => {
+          btn.textContent = "Wyślij wiadomość";
+          btn.style.background = "";
+          btn.disabled = false;
+          e.target.reset();
+        }, 4000);
+      }
+
+      /* MODALS */
+      const modalContent = {
+        regulamin: {
+          title: "Regulamin siłowni",
+          body: `<h3>§1 Postanowienia ogólne</h3><p>Niniejszy regulamin określa zasady korzystania z obiektu Elysium Sport & Fitness, zwanego dalej „Siłownią". Przebywając na terenie obiektu, każdy klient potwierdza zapoznanie się z regulaminem i zobowiązuje się do jego przestrzegania.</p><h3>§2 Zasady wstępu</h3><p>Z siłowni mogą korzystać osoby, które ukończyły 16. rok życia. Osoby w wieku 16–18 lat muszą posiadać pisemną zgodę rodzica lub opiekuna prawnego. Wejście możliwe jest po okazaniu ważnego karnetu lub wykupieniu jednorazowego biletu wstępu.</p><h3>§3 Obowiązki klientów</h3><p>Klienci zobowiązani są do: korzystania ze sprzętu zgodnie z jego przeznaczeniem, odkładania ciężarów na wyznaczone miejsca po zakończeniu ćwiczeń, używania ręcznika na maszynach i ławkach, noszenia obuwia sportowego (wymiennego), zachowania kultury osobistej wobec innych klientów i personelu.</p><h3>§4 Odpowiedzialność</h3><p>Siłownia nie ponosi odpowiedzialności za kontuzje i urazy powstałe wskutek nieprawidłowego korzystania ze sprzętu lub nieprzestrzegania wskazówek trenerów. Klienci korzystają z obiektu na własne ryzyko.</p><h3>§5 Postanowienia końcowe</h3><p>Regulamin wchodzi w życie z dniem 1 stycznia 2024 r. Zarząd Elysium zastrzega sobie prawo do zmiany regulaminu po uprzednim poinformowaniu klientów.</p>`,
+        },
+        polityka: {
+          title: "Polityka prywatności",
+          body: `<h3>1. Administrator danych</h3><p>Administratorem Twoich danych osobowych jest Elysium Sport & Fitness Sp. z o.o. z siedzibą przy ul. Sportowej 18, 00-001 Warszawa. Kontakt z administratorem: kontakt@elysiumfitness.pl</p><h3>2. Zakres przetwarzanych danych</h3><p>Przetwarzamy dane osobowe podane przez Ciebie w formularzach kontaktowych, przy rejestracji na zajęcia oraz w trakcie korzystania z usług: imię i nazwisko, adres e-mail, numer telefonu, dane dotyczące stanu zdrowia (wyłącznie za Twoją zgodą, w celach rehabilitacyjnych).</p><h3>3. Cel przetwarzania</h3><p>Twoje dane przetwarzane są w celu: realizacji usług fitness i rehabilitacyjnych, komunikacji z klientami, wystawiania faktur i dokumentów sprzedaży, wysyłki newslettera (wyłącznie za Twoją zgodą).</p><h3>4. Prawa użytkownika</h3><p>Przysługuje Ci prawo dostępu do danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, przenoszenia danych oraz wniesienia sprzeciwu. Możesz je zrealizować, kontaktując się z nami mailowo lub pisemnie.</p><h3>5. Pliki cookies</h3><p>Nasza strona używa plików cookies w celach analitycznych i funkcjonalnych. Możesz zarządzać plikami cookies w ustawieniach swojej przeglądarki.</p>`,
+        },
+        rodo: {
+          title: "Informacja RODO",
+          body: `<h3>Klauzula informacyjna RODO</h3><p>Zgodnie z art. 13 Rozporządzenia Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. (RODO) informujemy:</p><h3>Administrator</h3><p>Administratorem Pani/Pana danych osobowych jest Elysium Sport & Fitness Sp. z o.o., ul. Sportowa 18, 00-001 Warszawa, NIP: 000-000-00-00.</p><h3>Cele i podstawy przetwarzania</h3><p>Dane przetwarzane są na podstawie: art. 6 ust. 1 lit. b RODO (wykonanie umowy), art. 6 ust. 1 lit. c RODO (obowiązek prawny), art. 6 ust. 1 lit. a RODO (zgoda — dotyczy marketingu i newslettera).</p><h3>Okres przechowywania</h3><p>Dane przechowywane są przez okres obowiązywania umowy, a po jej zakończeniu przez czas wynikający z przepisów prawa (np. 5 lat dla dokumentów księgowych). Dane marketingowe — do czasu cofnięcia zgody.</p><h3>Przysługujące prawa</h3><p>Ma Pani/Pan prawo do: dostępu do danych, sprostowania, usunięcia, ograniczenia przetwarzania, przenoszenia danych, wniesienia sprzeciwu wobec przetwarzania, wniesienia skargi do Prezesa UODO (ul. Stawki 2, Warszawa).</p>`,
+        },
+      };
+      function openModal(type) {
+        const c = modalContent[type];
+        document.getElementById("modal-title").textContent = c.title;
+        document.getElementById("modal-body").innerHTML = c.body;
+        document.getElementById("modal-overlay").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeModal(e) {
+        if (e.target === document.getElementById("modal-overlay"))
+          closeModalDirect();
+      }
+      function closeModalDirect() {
+        document.getElementById("modal-overlay").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModalDirect();
+      });
+    </script>
   </body>
 </html>
